@@ -1,0 +1,14 @@
+include ../template/head
+
+h4 Merchant
+
+form(name='input' action='/merchants' method='post')
+	label MerchantId:
+		input(type='text' name='merchant_id' autofocus)
+	br
+	label Name:
+		input(type='text' name='merchant_name')
+	button(type='submit') submit
+
+
+include ../template/footer

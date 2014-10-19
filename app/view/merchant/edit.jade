@@ -1,0 +1,14 @@
+include ../template/head
+
+script(src='/public/js/merchant/edit.js')
+
+form(name='input' id='editForm')
+	label MerchantId
+		input(type='text' name='merchant_id' id='merchant_id' value='#{merchantId}' readonly)
+	br
+	label name
+		input(tyep='text' name='merchant_name' id='merchant_name' value='#{merchantName}' autofocus)
+	button(type='submit') submit
+
+
+include ../template/footer

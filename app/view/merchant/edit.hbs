@@ -1,0 +1,13 @@
+{{> head}}
+<script src="/public/js/merchant/edit.js"></script>
+
+<div>
+	You are editing ID # {{merchantId}} <br />
+	<form name="input" id="editForm">
+		MerchantId: <input type="text" name="merchant_id" id="merchant_id" value="{{merchantId}}" readonly /><br />
+		Name: 			<input type="text" name="merchant_name" id="merchant_name" value="{{merchantName}}" autofocus /><br />
+		<input type="submit" value="Submit">
+	</form>
+</div>
+
+{{> footer}}

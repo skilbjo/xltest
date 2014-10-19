@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+  <Say voice="woman">Hi. Thanks for trying John Skilbeck's integration of the Twilio API.</Say>
+  <Play>http://demo.twilio.com/docs/classic.mp3</Play>
+  <Record maxLength="30" />
+</Response>

@@ -25,6 +25,14 @@ module.exports = function(sequelize, DataTypes) {
     CardType: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    UserName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    UserEmail: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
   }, {
     tableName: 'Transaction',

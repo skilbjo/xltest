@@ -1,4 +1,7 @@
-var stripe   = require('stripe')(process.env.STRIPE_TEST_SECRET);
+var 
+  stripe   = require('stripe')(process.env.STRIPE_TEST_SECRET)
+  , domain = process.env.MAILGUN_DOMAIN
+  , mailgun = require('mailgun-js')({apiKey: process.env.MAILGUN_API_KEY, domain: domain});
 
 // GET, /transactions, index
 exports.index = function(req, res, model) {
@@ -14,32 +17,38 @@ exports.new = function(req, res) {
 
 // POST, /transactions, create
 exports.create = function(req, res, model) {
-  //  || req.param('id'); // this is correct 
-
   stripe.charges.create({
     amount: 100
     , currency: "usd"
     , card: req.body.stripeToken
-    , description: "txn"
+    , description: "xltest"
   }, function(err, charge) {
       if(err || !charge) {
         res.json(err); return;
       } else {
-        console.log(charge);
+        // console.log(charge);
         model.transaction
           .create({ 
             Amount: (charge.amount / 100)
-            , MerchantId: 1
             , StripeId: charge.id
             , CardId: charge.card.id
             , Network: charge.card.brand
             , CardType: charge.card.funding
+            , UserName: req.body.name
+            , UserEmail: req.body.email
           })
           .complete(function(err, transaction) {
             if(err || !transaction) {
               res.json(err); return;
             } else {
-              res.json(transaction);
+              var email = { from: 'john.skilbeck@gmail.com', to: req.body.email, subject: 'Hi', text: 'Testing some stuff' };
+
+              mailgun.messages().send(email, function(err, body) {  
+                res.json(body);
+                  // res.json(transaction); 
+              });
+
+              // res.json(transaction);
             }
           });
       }

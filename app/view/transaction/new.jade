@@ -26,6 +26,12 @@ br
 
 form(action='/transactions', method='post', id='payment-form')
 	span(class='payment-errors')
+	label(for='name') Your Name
+		input(name='name', value='John')
+	br
+	label(for='email') Your email
+		input(name='email', value='john.skilbec@gmail.com')
+	br 
 	label(for='number') Card Number  
 		input(data-stripe='number', value='4242424242424242')
 	br

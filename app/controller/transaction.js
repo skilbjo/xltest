@@ -4,11 +4,11 @@ var
   , domain    = process.env.MAILGUN_DOMAIN
   , mailgun   = require('mailgun-js')({apiKey: process.env.MAILGUN_API_KEY, domain: domain})
   , path      = require('path')
-  , filename  = 'xltest.xlsx'
-  // , fn        = 'README.md'
-  // , fp        = path.join(__dirname, fn)
-  , filepath  = path.join(__dirname, '/../../public/assets/', filename)
-  , file      = fs.readFileSync(filepath);
+  // , filename  = 'xltest.xlsx'
+  , filename  = './../../package.JSON'
+  // , filepath  = path.join(__dirname, '/../../public/assets/', filename)
+  , filepath  = path.join(__dirname, filename);
+  // , file      = fs.readFileSync(filepath);
 
 // GET, /transactions, index
 exports.index = function(req, res, model) {
@@ -61,17 +61,16 @@ exports.create = function(req, res, model) {
   };
 
   var sendEmail = function() {
-    var attch = new mailgun.Attachment({data: file, filename: filename});
+    // var attch = new mailgun.Attachment({data: file, filename: filename});
+    console.log(filepath);
 
     var email = { 
       from: 'john.skilbeck@gmail.com'
       , to: req.body.email
       , subject: 'Hi - attachement'
       , text: 'Testing some stuff - pls include attachement'
-      , attachement: attch
+      , attachement: filepath
     };
-
-
 
     mailgun.messages().send(email, function(err, body) {
       if (err) { res.json(err); return; } else {

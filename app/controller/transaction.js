@@ -1,7 +1,14 @@
 var 
-  stripe   = require('stripe')(process.env.STRIPE_TEST_SECRET)
-  , domain = process.env.MAILGUN_DOMAIN
-  , mailgun = require('mailgun-js')({apiKey: process.env.MAILGUN_API_KEY, domain: domain});
+  stripe      = require('stripe')(process.env.STRIPE_TEST_SECRET)
+  , fs        = require('fs')
+  , domain    = process.env.MAILGUN_DOMAIN
+  , mailgun   = require('mailgun-js')({apiKey: process.env.MAILGUN_API_KEY, domain: domain})
+  , path      = require('path')
+  , filename  = 'xltest.xlsx'
+  // , fn        = 'README.md'
+  // , fp        = path.join(__dirname, fn)
+  , filepath  = path.join(__dirname, '/../../public/assets/', filename)
+  , file      = fs.readFileSync(filepath);
 
 // GET, /transactions, index
 exports.index = function(req, res, model) {
@@ -12,6 +19,7 @@ exports.index = function(req, res, model) {
 
 // GET, /transactions/new, new
 exports.new = function(req, res) {
+  console.log(filepath);
   res.render('transaction/new');
 };
 
@@ -26,34 +34,52 @@ exports.create = function(req, res, model) {
       if(err || !charge) {
         res.json(err); return;
       } else {
-        // console.log(charge);
-        model.transaction
-          .create({ 
-            Amount: (charge.amount / 100)
-            , StripeId: charge.id
-            , CardId: charge.card.id
-            , Network: charge.card.brand
-            , CardType: charge.card.funding
-            , UserName: req.body.name
-            , UserEmail: req.body.email
-          })
-          .complete(function(err, transaction) {
-            if(err || !transaction) {
-              res.json(err); return;
-            } else {
-              var email = { from: 'john.skilbeck@gmail.com', to: req.body.email, subject: 'Hi', text: 'Testing some stuff' };
-
-              mailgun.messages().send(email, function(err, body) {  
-                res.json(body);
-                  // res.json(transaction); 
-              });
-
-              // res.json(transaction);
-            }
-          });
+        saveTxn(charge);
       }
     }
   );
+
+  var saveTxn = function(charge) {
+    model.transaction
+      .create({ 
+        Amount: (charge.amount / 100)
+        , StripeId: charge.id
+        , CardId: charge.card.id
+        , Network: charge.card.brand
+        , CardType: charge.card.funding
+        , UserName: req.body.name
+        , UserEmail: req.body.email
+      })
+      .complete(function(err, transaction) {
+        if(err || !transaction) {
+          res.json(err); return;
+        } else {
+          sendEmail();
+          res.json(transaction);
+        }
+      });
+  };
+
+  var sendEmail = function() {
+    var attch = new mailgun.Attachment({data: file, filename: filename});
+
+    var email = { 
+      from: 'john.skilbeck@gmail.com'
+      , to: req.body.email
+      , subject: 'Hi - attachement'
+      , text: 'Testing some stuff - pls include attachement'
+      , attachement: attch
+    };
+
+
+
+    mailgun.messages().send(email, function(err, body) {
+      if (err) { res.json(err); return; } else {
+        console.log(body);
+      }
+    });
+  };
+
 };
 
 // GET, /merchants/:id, show

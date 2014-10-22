@@ -21,7 +21,7 @@ app.use(cookieParser()); app.use(methodOverride()); app.use(bodyParser.urlencode
 app.use(bodyParser.json()); app.use(errorHandler()); app.use(morgan('dev'));  app.use(flash());
 
 app.set('port', process.env.PORT || 8080);
-app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(favicon(__dirname + '/public/assets/favicon.ico'));
 app.use('/public', express.static('public'));
 
 // view template engine

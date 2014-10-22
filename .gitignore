@@ -4,6 +4,7 @@ node_modules
 config/auth.js
 .env
 *.env
+*.xlsx
 env
 newrelic_agent.log
 bower_components/

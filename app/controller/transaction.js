@@ -48,6 +48,10 @@ exports.create = function(req, res, model) {
         if(err || !transaction) {
           res.json(err); return;
         } else {
+          res.json({ status: 
+                        {message: 'Thanks for your purchase!, check ' + req.body.email + ' for your xltest!'}
+                   , details: { transaction: transaction }
+                  });
           sendEmail();
         }
       });
@@ -58,7 +62,7 @@ exports.create = function(req, res, model) {
       from: 'John <skilbjo@gmail.com>'
       , to: req.body.email
       , subject: 'Thanks for purchasing!'
-      , text: 'Hello Testing stuff'
+      , text: 'Hi, Thanks for purchasing your XL Test! Attached is your copy!'
       , attachment: [
           { path: filepath
             , name: 'XL Test.xlsx'
@@ -66,7 +70,7 @@ exports.create = function(req, res, model) {
       ]
     };
 
-    server.send(message, function(err, response) { res.json(err || message); });
+    server.send(message, function(err, response) { console.log(err || message); });
   };
 
 };

@@ -1,16 +1,9 @@
 var 
   stripe          = require('stripe')(process.env.STRIPE_TEST_SECRET)
-  , fs            = require('fs')
-  // , domain    = process.env.MAILGUN_DOMAIN
-  // , mailgun   = require('mailgun-js')({apiKey: process.env.MAILGUN_API_KEY, domain: domain})
-  // , nodemailer    = require('nodemailer')
-  // , transporter   = nodemailer.createTransport({ service: 'gmail', auth: { user: process.env.GMAIL_USER, pass: process.env.GMAIL_PASS } })
   , path          = require('path')
-  , filename      = 'a.txt'
-  , filepath      = path.join(__dirname, filename)
+  , filepath      = path.join(__dirname, '/../../public/assets/xltest.xlsx')
   , email         = require('emailjs')
   , server        = email.server.connect({ user: process.env.GMAIL_USER , password: process.env.GMAIL_PASS, host: 'smtp.gmail.com', ssl: true});
-  // , filepath      = path.join(__dirname, filename);
 
 // GET, /transactions, index
 exports.index = function(req, res, model) {
@@ -55,45 +48,26 @@ exports.create = function(req, res, model) {
         if(err || !transaction) {
           res.json(err); return;
         } else {
-          // sendEmailMailGun();
-          sendEmailNodeMailer();
-          res.json(transaction);
+          sendEmail();
         }
       });
   };
 
-  var sendEmailNodeMailer = function () {
+  var sendEmail = function () {
     var message = {
       from: 'John <skilbjo@gmail.com>'
       , to: req.body.email
-      , subject: 'Testing email.js2'
+      , subject: 'Thanks for purchasing!'
       , text: 'Hello Testing stuff'
-      , attachement: [ { path: filepath, name: 'a.js' } ]
+      , attachment: [
+          { path: filepath
+            , name: 'XL Test.xlsx'
+            , type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}
+      ]
     };
 
-    console.log(message.attachement[0].path);
-
-    server.send(message, function(err, response) { console.log(err || message); });
+    server.send(message, function(err, response) { res.json(err || message); });
   };
-
-  // var sendEmailMailGun = function() {
-  //   // var attch = new mailgun.Attachment({data: file, filename: filename});
-  //   console.log(filepath);
-
-  //   var email = { 
-  //     from: 'john.skil@gmail.com'
-  //     , to: req.body.email
-  //     , subject: 'Hi - attachement'
-  //     , text: 'Testing some stuff - pls include attachement'
-  //     , attachement: filepath
-  //   };
-
-  //   mailgun.messages().send(email, function(err, body) {
-  //     if (err) { res.json(err); return; } else {
-  //       console.log(body);
-  //     }
-  //   });
-  // };
 
 };
 

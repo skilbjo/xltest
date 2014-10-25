@@ -1,26 +1,30 @@
-### Project Overview
+# Project Overview
 
 A node.js web app that sells my Excel test I give candidates when interviewing to be on my team. Often I noticed that candidates would list "mastery of MS Excel" on their resumes, but when tested, they have at best an intermediate skillset. The Excel test would provide a check to anyone who wants to list expert level Excel skills.
 
-### Technical Details
+## Technical Details
 
-The project here is to test my node.js skills.
+The project here is to test my `node.js` skills.
 
 The stack:
 
-# Front end:
+#### Front end:
 js: `jquery`
+
 css: `bootstrap`
 
-# Server side:
-framework: `express	 with an MVC-type implementation
+#### Server side:
+framework: `express` with an MVC-type implementation
+
+
+#### Database
 object-relational mapper: `sequelize.js`
 
-# Database
 database: `postgres`
 
-# Integrations
+#### Integrations
 Payments: Stripe
+
 Transactional email: Mailgun
 
 ## Installation
@@ -29,13 +33,17 @@ Transactional email: Mailgun
 
 	$ npm install
 
-	$ postgres -D /usr/local/var/postgres
+	$ postgres -D /usr/local/var/postgres --fork
+
+	$ vim .env
 
 Add in super secret configuration variables (API keys, database URL)
 
 Add the Excel test in `/public/assets/xltest.xlsx`
 
-Run the server locally with node-foreman (loads config vars from `.env`)
+
+## Let's begin!
+Run the server locally with `node-foreman` (loads config vars from `.env`)
 
 	nf start -x 8080 -e env/dev.env
 

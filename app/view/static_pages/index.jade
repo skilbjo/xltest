@@ -1,13 +1,19 @@
-include ../template/head
+extends ../template/layout
 
-h4 Stripe API
-	:markdown
-		index: 		[/transactions](/transactions)  
-		show:			[/transactions/1](/transactions/1)  
-		new:			[/transactions/new](/transactions/new)
+block content
+	.container
+		.intro
+			h1 XL Test
+			p.lead Test your MS Excel skills
 
-h4 Github Repo
-	:markdown
-		txn: 			[https://github.com/skilbjo/xltest](https://github.com/skilbjo/xltest)
+	.container
+		.main
+			h4 Stripe API
+				:markdown
+					index: 		[/transactions](/transactions)  
+					show:			[/transactions/1](/transactions/1)  
+					new:			[/transactions/new](/transactions/new)
 
-include ../template/footer
+			h4 Github Repo
+				:markdown
+					txn: 			[https://github.com/skilbjo/xltest](https://github.com/skilbjo/xltest)

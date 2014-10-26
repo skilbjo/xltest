@@ -15,6 +15,7 @@ css: `bootstrap`
 
 #### Server side:
 framework: `express` with an MVC-type implementation
+language: `node.js`
 
 
 #### Database

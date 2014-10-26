@@ -1,10 +1,17 @@
+# Ignore these files & directories
 .DS_Store
 node_modules
 *.sock
 config/auth.js
-.env
-*.env
-*.xlsx
-env
+*env*
+*xlsx
 newrelic_agent.log
-bower_components/
+bower_components/*
+
+# Unless they match this file path
+!bower_components/bootstrap/dist/css/bootstrap.min.css
+!bower_components/jquery/dist/jquery.min.js
+!bower_components/bootstrap/dist/js/bootstrap.min.js
+
+# Even if they are in subfolders
+# */

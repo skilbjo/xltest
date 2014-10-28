@@ -1,29 +1,33 @@
 $(document).ready(function() {
-	$('[data-number]').payment('restrictNumeric');
+	// format & restrict input options for payment fields
+	$('input.cc-number').payment('restrictNumeric');
+	$('input.cc-cvc').payment('restrictNumeric');
 	$('input.cc-number').payment('formatCardNumber');
 	$('input.cc-cvc').payment('formatCardCVC');
 
 // Validate info on the client side
-	var stripeValidateForm = function() {
-		var valid = $.payment.validateCardNumber($('input.cc-number').val());
+	var stripeValidateForm = function() {  // refactor valid into a switch statement
+		var 
+			cardType = $.payment.cardType($('.cc-number').val())
+			, valid = ( ($.payment.validateCardNumber($('input.cc-number').val()) )  && ( $.payment.validateCardCVC($('input.cc-cvc').val(), cardType) )  && (true) );
 
-		alert(valid);
+			if (!valid) {
+				$('.cc-number').toggleInputError(!$.payment.validateCardNumber($('.cc-number').val()));
+				// $('.cc-exp').toggleInputError(!$.payment.validateCardExpiry($('.cc-exp').payment('cardExpiryVal')));
+				$('.cc-cvc').toggleInputError(!$.payment.validateCardCVC($('.cc-cvc').val(), cardType));
+	/* fix */			$('.validation').addClass($('.has-error').length ? 'text-danger' : 'text-success'); // fix this
+			} else if (valid) {
+				$('.cc-brand').text(cardType);
+				$('.validation').removeClass('text-danger text-success');
+			}
 		return valid;
-
-		// var cardType = $.payment.cardType($('.cc-number').val());
-		// $('.cc-number').toggleInputError(!$.payment.validateCardNumber($('.cc-number').val()));
-		// $('.cc-exp').toggleInputError(!$.payment.validateCardExpiry($('.cc-exp').payment('cardExpiryVal')));
-		// $('.cc-cvc').toggleInputError(!$.payment.validateCardCVC($('.cc-cvc').val(), cardType));
-		// // $('.cc-brand').text(cardType);
-		// $('.validation').removeClass('text-danger text-success');
-		// $('.validation').addClass($('.has-error').length ? 'text-danger' : 'text-success');
 	};
 
 // jQuery function that adds the error class
-	// $.fn.toggleInputError = function(err) {
-	// 	this.parent('.form-group').toggleClass('has-error', err);
-	// 	return this;
-	// };
+	$.fn.toggleInputError = function(err) {
+		this.parent('.form-group').toggleClass('has-error', err);
+		return this;
+	};
 
 // Get Stripe Key
 	Stripe.setPublishableKey('pk_test_Bs8ajQXtiMr40QWaR7BthKK4');
@@ -34,10 +38,7 @@ $(document).ready(function() {
 			 $form.find('.payment-errors').text(response.error.message);
 			 $form.find('button').prop('disabled', false);
 		 } else {
-			 var token = response.id;
-			 // Insert the token into the form so it gets submitted to the server
-			 $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-			 // and re-submit
+			 $form.append($('<input type="hidden" name="stripeToken" />').val(response.id));
 			 $form.get(0).submit();
 		 }
 	 };
@@ -52,16 +53,10 @@ $(document).ready(function() {
 					// Disable the submit button to prevent repeated clicks
 					$form.find('button').prop('disabled', true);
 					Stripe.card.createToken($form, stripeResponseHandler);
-					// Prevent the form from submitting with the default action
 					return false;
 				}
 			// }
 		});
 	});
-
-
-
-
-
 
 });

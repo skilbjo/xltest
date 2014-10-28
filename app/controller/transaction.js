@@ -1,7 +1,7 @@
 var 
   stripe          = require('stripe')(process.env.STRIPE_TEST_SECRET)
   , path          = require('path')
-  , filepath      = path.join(__dirname, '/../../public/assets/xltest.xlsx')
+  , filepath      = path.join(__dirname, '/../../public/assets/xltest/xltest.xlsx')
   , email         = require('emailjs')
   , server        = email.server.connect({ user: process.env.GMAIL_USER , password: process.env.GMAIL_PASS, host: 'smtp.gmail.com', ssl: true});
 
@@ -49,8 +49,9 @@ exports.create = function(req, res, model) {
           res.json(err); return;
         } else {
           res.json({ status: 
-                        {message: 'Thanks for your purchase!, check ' + req.body.email + ' for your xltest!'}
-                   , details: { transaction: transaction }
+                      {message: 'Thanks for your purchase!, check ' + req.body.email + ' for your xltest!'}
+                   , details: 
+                      { transaction: transaction }
                   });
           sendEmail();
         }

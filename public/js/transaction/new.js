@@ -1,24 +1,14 @@
 $(document).ready(function() {
 	$('[data-number]').payment('restrictNumeric');
 	$('input.cc-number').payment('formatCardNumber');
-	// $('input.cc-exp').payment('formatCardExpiry');
 	$('input.cc-cvc').payment('formatCardCVC');
 
 // Validate info on the client side
 	var stripeValidateForm = function() {
-		var valid = function() {
-			if ($.payment.validateCardNumber($('input.cc-num').val())) {
-				return true;
-			} else {
-				return false;
-			}
-		};
+		var valid = $.payment.validateCardNumber($('input.cc-number').val());
 
-		alert(valid());
-
-		if (!valid()) {
-			return false;
-		}
+		alert(valid);
+		return valid;
 
 		// var cardType = $.payment.cardType($('.cc-number').val());
 		// $('.cc-number').toggleInputError(!$.payment.validateCardNumber($('.cc-number').val()));
@@ -57,13 +47,14 @@ $(document).ready(function() {
 		$('#payment-form').submit(function(e) {
 			e.preventDefault();
 			// if (stripeValidateForm()) {
-				stripeValidateForm();
-				var $form = $(this);
-				// Disable the submit button to prevent repeated clicks
-				$form.find('button').prop('disabled', true);
-				Stripe.card.createToken($form, stripeResponseHandler);
-				// Prevent the form from submitting with the default action
-				return false;
+				if (stripeValidateForm()) {
+					var $form = $(this);
+					// Disable the submit button to prevent repeated clicks
+					$form.find('button').prop('disabled', true);
+					Stripe.card.createToken($form, stripeResponseHandler);
+					// Prevent the form from submitting with the default action
+					return false;
+				}
 			// }
 		});
 	});

@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	// format & restrict input options for payment fields
+// jQuery Payment Library to help client side restrictions
 	$('input.cc-number').payment('restrictNumeric');
 	$('input.cc-cvc').payment('restrictNumeric');
 	$('input.cc-number').payment('formatCardNumber');
@@ -18,11 +18,12 @@ $(document).ready(function() {
 			valid
 			, cardType = $.payment.cardType($('.cc-number').val())
 			, ccValid = $.payment.validateCardNumber($('input.cc-number').val())
-			, cvcValid = $.payment.validateCardCVC($('input.cc-cvc').val(), cardType);
+			, cvcValid = $.payment.validateCardCVC($('input.cc-cvc').val(), cardType)
+			, ccExpiryValid = $.payment.validateCardExpiry($('.cc-exp').payment('cardExpiryVal'));
 
 			$('.cc-brand').text(cardType);
 
-			switch (ccValid && cvcValid) {
+			switch (ccValid && cvcValid && ccExpiryValid) {
 				case true:
 					valid = true;
 					$('.validation').removeClass('text-danger text-success');

@@ -8,7 +8,7 @@ The project here is to test my `node.js` skills.
 
 The stack:
 
-| Scope       | Technology                | Tool                                                                      |
+| Scope       | Area                      | Technology                                                                |
 |-------------|---------------------------|---------------------------------------------------------------------------|
 | Front End   | `js` Library              | [jQuery](http://jquery.com/)                                              |
 | Front End   | Framework                 | [bootstrap](http://getbootstrap.com/css/)                                 |

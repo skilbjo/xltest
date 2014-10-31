@@ -2,17 +2,15 @@
 .DS_Store
 node_modules
 *.sock
-config/auth.js
 *env*
 *xlsx
 newrelic_agent.log
 bower_components/
 
 public/
-!public/css
-!public/js
-!public/assets
-
+!public/css/*
+!public/js/*
+!public/assets/*
 
 # Unless they match this file path
 # !bower_components/bootstrap/dist/css/bootstrap.min.css

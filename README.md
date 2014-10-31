@@ -8,28 +8,19 @@ The project here is to test my `node.js` skills.
 
 The stack:
 
-#### Front end:
-|     Scope    |                    Tool                   |
-|:------------:|:-----------------------------------------:|
-| `js` library |        [jQuery](http://jquery.com/)       |
-|   framework  | [bootstrap](http://getbootstrap.com/css/) |
+| Scope       | Technology                | Tool                                                                      |
+|-------------|---------------------------|---------------------------------------------------------------------------|
+| Front End   | `js` Library              | [jQuery](http://jquery.com/)                                              |
+| Front End   | Framework                 | [bootstrap](http://getbootstrap.com/css/)                                 |
+| Server Side | Templating Language       | [jade](http://jade-lang.com/reference/)                                   |
+| Server Side | MVC Framework             | [express.js](http://expressjs.com/api.html)                               |
+| Server Side | Language                  | [node.js](http://nodejs.org/api)                                          |
+| Server Side | Object-Relational Mapping | [sequelize.js](https://github.com/sequelize/sequelize/wiki/API-Reference) |
+| Server Side | Database                  | [postgres](http://www.postgresql.org/docs/)                               |
+| Integration | Payments                  | [stripe](https://stripe.com/docs/api/node)                                |
+| Integration | Email                     | [email.js](https://github.com/eleith/emailjs)                             |
+| Integration | Deployment                | [heroku](https://devcenter.heroku.com/categories/nodejs)                  |
 
-#### Server side:
-|           Scope           |                                    Tool                                   |
-|:-------------------------:|:-------------------------------------------------------------------------:|
-|       MVC framework       |                [express.js](http://expressjs.com/api.html)                |
-|    server side language   |                      [node.js](http://nodejs.org/api)                     |
-| object-relational mapping | [sequelize.js](https://github.com/sequelize/sequelize/wiki/API-Reference) |
-|          database         |                [postgres](http://www.postgresql.org/docs/)                |
-
-
-
-#### Integrations
-|    Scope   |                           Tool                           |
-|:----------:|:--------------------------------------------------------:|
-|  Payments  |        [stripe](https://stripe.com/docs/api/node)        |
-|    Email   |       [email.js](https://github.com/eleith/emailjs)      |
-| Deployment | [heroku](https://devcenter.heroku.com/categories/nodejs) |
 
 ## Installation
 

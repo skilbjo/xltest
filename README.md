@@ -9,24 +9,27 @@ The project here is to test my `node.js` skills.
 The stack:
 
 #### Front end:
-js: `jquery`
-
-css: `bootstrap`
+|     Scope    |                    Tool                   |
+|:------------:|:-----------------------------------------:|
+| `js` library |        [jQuery](http://jquery.com/)       |
+|   framework  | [bootstrap](http://getbootstrap.com/css/) |
 
 #### Server side:
-framework: `express` with an MVC-type implementation
-language: `node.js`
+|           Scope           |                                    Tool                                   |
+|:-------------------------:|:-------------------------------------------------------------------------:|
+|       MVC framework       |                [express.js](http://expressjs.com/api.html)                |
+|    server side language   |                      [node.js](http://nodejs.org/api)                     |
+| object-relational mapping | [sequelize.js](https://github.com/sequelize/sequelize/wiki/API-Reference) |
+|          database         |                [postgres](http://www.postgresql.org/docs/)                |
 
 
-#### Database
-object-relational mapper: `sequelize.js`
-
-database: `postgres`
 
 #### Integrations
-Payments: Stripe
-
-Transactional email: Mailgun
+|    Scope   |                           Tool                           |
+|:----------:|:--------------------------------------------------------:|
+|  Payments  |        [stripe](https://stripe.com/docs/api/node)        |
+|    Email   |       [email.js](https://github.com/eleith/emailjs)      |
+| Deployment | [heroku](https://devcenter.heroku.com/categories/nodejs) |
 
 ## Installation
 

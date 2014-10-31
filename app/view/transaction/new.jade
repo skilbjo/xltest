@@ -26,21 +26,21 @@ block content
 			span(class='payment-errors')
 			.form-group
 				label(for='name') Your Name
-				input(name='name', class='input-lg form-control', value='Excited User!')
+				input(name='name', class='input-lg form-control', placeholder='I love Excel!')
 			.form-group
 				label(for='email') Your Email
-				input(name='email', class='input-lg form-control', value='Excited User@gmail.com')
+				input(name='email', class='input-lg form-control', placeholder='Send me my Excel Test!@gmail.com')
 			.form-group
 				label(for='number', class='control-label') Card Number 
 				small(class='text-muted')
 					span(class='cc-brand')
-				input(data-stripe='number', class='cc-number input-lg form-control', autocomplete='cc-number', required, value='4242')
+				input(data-stripe='number', class='cc-number input-lg form-control', autocomplete='cc-number', required, placeholder='Card number')
 			.form-group
 				label(for='cvc', class='control-label') CVC  
 				input(data-stripe='cvc', class='cc-cvc input-lg form-control' autocomplete='off' required, placeholder='Security Code')
 			.form-group
 				label(for='cc-exp', class='control-label') Expiration  
-				input(class='cc-exp input-lg form-control' required, value='1')
+				input(class='cc-exp input-lg form-control' required, placeholder='Expiry Date')
 			br
 			button(type='submit' class='btn btn-primary') Submit
 

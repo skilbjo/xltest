@@ -24,33 +24,32 @@ block content
 
 		form(action='/transactions', method='post', id='payment-form' autocomplete='on')
 			span(class='payment-errors')
-			label(for='name') Your Name
-				input(name='name', value='Excited User!')
-
-			label(for='email') Your email
-				input(name='email', value='Excited User@gmail.com')
-
 			.form-group
-				label(for='number') Card Number  
-					input(data-stripe='number', class='cc-number', autocomplete='cc-number', required, value='4242')
+				label(for='name') Your Name
+				input(name='name', class='input-lg form-control', value='Excited User!')
 			.form-group
-				label(for='cvc') CVC  
-					input(data-stripe='cvc', class='cc-cvc' autocomplete='off' required, value='123')
+				label(for='email') Your Email
+				input(name='email', class='input-lg form-control', value='Excited User@gmail.com')
 			.form-group
-				label(for='Exp Month') Exp Month  
-					input(data-stripe='exp-month', class='cc-exp-month', autocomplete='cc-exp' required, value='01')
+				label(for='number', class='control-label') Card Number 
+				small(class='text-muted')
+					span(class='cc-brand')
+				input(data-stripe='number', class='cc-number input-lg form-control', autocomplete='cc-number', required, value='4242')
 			.form-group
-				label(for='Exp Year') Exp Year  
-					input(data-stripe='exp-year' class='cc-exp-year', autocomplete='cc-exp' required, value='15')
+				label(for='cvc', class='control-label') CVC  
+				input(data-stripe='cvc', class='cc-cvc input-lg form-control' autocomplete='off' required, placeholder='Security Code')
+			.form-group
+				label(for='cc-exp', class='control-label') Expiration  
+				input(class='cc-exp input-lg form-control' required, value='1')
 			br
-			button(type='submit') Submit
+			button(type='submit' class='btn btn-primary') Submit
 
-		h2.validation
-
-			script(src='https://js.stripe.com/v2/')
-			script(src='/bower/jquery/dist/jquery.min.js')
-			script(src='/public/js/transaction/new.js')
-			script(src='/bower/jquery.payment/lib/jquery.payment.js')
+	h2.validation
+			
+	script(src='https://js.stripe.com/v2/')
+	script(src='/bower/jquery/dist/jquery.min.js')
+	script(src='/public/js/transaction/new.js')
+	script(src='/bower/jquery.payment/lib/jquery.payment.js')
 
 
 include ../template/footer

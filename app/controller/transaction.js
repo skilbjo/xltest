@@ -1,7 +1,7 @@
 var 
   stripe          = require('stripe')(process.env.STRIPE_TEST_SECRET)
   , path          = require('path')
-  , filepath      = path.join(__dirname, '/../../public/assets/xltest/xltest.xlsx')
+  , filepath      = path.join(__dirname, process.env.FILEPATH)
   , email         = require('emailjs')
   , server        = email.server.connect({ user: process.env.GMAIL_USER , password: process.env.GMAIL_PASS, host: 'smtp.gmail.com', ssl: true});
 

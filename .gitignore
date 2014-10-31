@@ -6,14 +6,13 @@ config/auth.js
 *env*
 *xlsx
 newrelic_agent.log
-bower_components/*
-!bower_components/bootstrap
-bower_components/bootstrap/*
-!bower_components/bootstrap/dist
-bower_components/bootstrap/dist/*
-!bower_components/bootstrap/dist/css
-bower_components/bootstrap/dist/css/*
-!bower_components/bootstrap/dist/css/bootstrap.min.css
+bower_components/
+
+public/
+!public/css
+!public/js
+!public/assets
+
 
 # Unless they match this file path
 # !bower_components/bootstrap/dist/css/bootstrap.min.css

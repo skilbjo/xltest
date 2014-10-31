@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "nodemon server.js" 
-    , "postinstall": "bower install"
+    , "postinstall": "./node_modules/bower/bin/bower install"
   },
   "dependencies": {
     "express": "4.8.5"

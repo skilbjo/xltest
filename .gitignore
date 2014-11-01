@@ -11,6 +11,7 @@ public/
 !public/css/*
 !public/js/*
 !public/assets/*
+!public/secret/*
 
 # Unless they match this file path
 # !bower_components/bootstrap/dist/css/bootstrap.min.css

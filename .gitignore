@@ -7,12 +7,7 @@ node_modules
 newrelic_agent.log
 bower_components/
 
-public/
-!public/css/*
-!public/js/*
-!public/assets/*
-public/assets/fonts*
-!public/secret/*
+
 
 # Unless they match this file path
 # !bower_components/bootstrap/*

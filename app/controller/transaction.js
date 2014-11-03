@@ -71,6 +71,11 @@ exports.create = function(req, res, model) {
       ]
     };
 
+    console.log(__dirname);
+    console.log(process.env.FILEPATH);
+    console.log(filepath);
+    console.log(path.join(__dirname, process.env.FILEPATH));
+
     server.send(message, function(err, response) { console.log(err || message); });
   };
 

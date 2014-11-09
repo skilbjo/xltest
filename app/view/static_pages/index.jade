@@ -1,12 +1,11 @@
 extends ../template/layout
 
 block content
-	include ./jumbotron
+	include ./elements/jumbotron
 
-	.container
-		// Details
-		include ./details
-		// Purchase
-		include ./purchase
-		// About
-		include ./about
+	section.details
+		include ./elements/details
+	section.purchase
+		include ./elements/purchase
+	section.about
+		include ./elements/about

@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
-  var Transaction = sequelize.define('Transaction', {
-    TransactionId: { 
+  var Purchase = sequelize.define('Purchase', {
+    PurchaseId: { 
       type: DataTypes.INTEGER,
       primaryKey: true,
       notNull: true,
@@ -35,7 +35,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   }, {
-    tableName: 'Transaction',
+    tableName: 'Purchase',
     timestamps: false, 
     classMethods: {
       // associate: function(models) {
@@ -43,5 +43,5 @@ module.exports = function(sequelize, DataTypes) {
       // }
     }
   }); 
-  return Transaction;
+  return Purchase;
 };

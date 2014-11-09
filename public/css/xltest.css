@@ -62,5 +62,12 @@
   text-transform: capitalize
 }
 
-/* Responsive Design */
+/* NavBar */
 
+.navbar-default {
+  background-color: #0096ff;
+  border-color: #0433ff;
+}
+.navbar-default .navbar-brand {
+  color: #ffffff;
+}

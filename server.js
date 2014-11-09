@@ -20,7 +20,7 @@ app.use(cookieParser()); app.use(methodOverride()); app.use(bodyParser.urlencode
 app.use(bodyParser.json()); app.use(errorHandler()); app.use(morgan('dev'));  app.use(flash());
 
 app.set('port', process.env.PORT || 8080);
-app.use(favicon(__dirname + '/public/assets/favicon.ico'));
+app.use(favicon(__dirname + '/public/assets/favicon/favicon.ico'));
 app.use('/public', express.static('public'));
 app.use('/bower', express.static('bower_components'));
 
@@ -34,13 +34,13 @@ app.set('models', require('./app/model'));
 // MVC Definitions =============
 // models =============
 var model = { 
-  transaction   : app.get('models').Transaction
+  purchase   : app.get('models').purchase
 };
 
 // controllers ========
 var controller = {
   static_pages    : require('./app/controller/static_pages.js') 
-  , transaction   : require('./app/controller/transaction.js')
+  , purchase   : require('./app/controller/purchase.js')
 };
 
 // routes =============
@@ -50,7 +50,7 @@ require('./app/routes.js')(app
   );
 
 // launch ===================
-db.sequelize.sync({ force: false }).complete(function(err) {
+db.sequelize.sync({ force: true }).complete(function(err) {
   if (err) { throw err[0] ; } else {
     http.createServer(app).listen(app.get('port'), function(){ 
       console.log('The magic happens on port ' + app.get('port'));

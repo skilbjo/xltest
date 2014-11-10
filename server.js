@@ -34,7 +34,7 @@ app.set('models', require('./app/model'));
 // MVC Definitions =============
 // models =============
 var model = { 
-  purchase   : app.get('models').purchase
+  purchase   : app.get('models').Purchase
 };
 
 // controllers ========

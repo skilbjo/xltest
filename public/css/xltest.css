@@ -20,7 +20,7 @@
 /* Elements */
 
 .jumbotron-main {
-  padding: 10px 15px;
+  padding: 0px 15px;
   text-align: center;
   color: red;
   background-image: url('/public/assets/images/hero.jpg');
@@ -40,8 +40,17 @@
   text-align: center;
 }
 
+.sample {
+  padding: 10px 15px;
+  text-align: center;
+}
+
 .about {
   padding: 10px 15px;
+  text-align: center;
+}
+
+.footer {
   text-align: center;
 }
 

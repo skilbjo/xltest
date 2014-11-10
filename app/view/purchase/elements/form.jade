@@ -1,0 +1,31 @@
+div.wsite-form-container(style='margin-top: 10px;')
+	ul.formlist
+		h2.wsite-content-title(style='text-alight:left;') payment form
+		div
+			div.wsite-form-field.wsite-name-field(style='margin: 5px 0px 5px 0px;')
+				label.wsite-form-label contact info
+				div.wsite-form-input-container.wsite-form-left.wsite-form-input-first-name
+					input.wsite-form-input.wsite-input(name='name', placeholder='Mr. / Ms. I-love-Excel')
+					label.wsite-form-sublabel name
+				div.wsite-form-input-container.wsite-form-right.wsite-form-input-last-name
+					input.wsite-form-input.wsite-input(name='email', placeholder='Send me my Excel Test!@gmail.com')
+					label.wsite-form-sublabel email
+		div
+			div.wsite-form-field.wsite-name-field(style='margin: 5px 0px 5px 0px;')
+					label.wsite-form-label card no 
+						span.form-required *
+					small(class='text-muted')
+						span(class='cc-brand')
+					div.wsite-form-input-container.wsite-form-left.wsite-form-input-first-name
+						input.wsite-form-input.wsite-input(data-stripe='number', class='cc-number', autocomplete='cc-number', required, placeholder='Card number')
+				div.wsite-form-input-container.wsite-form-right.wsite-form-input-last-name
+						label.wsite-form-label exp   
+							span.form-required *
+						div.wsite-form-input-container.wsite-form-right.wsite-form-input-last-name
+							input.wsite-form-input.wsite-input(class='cc-exp' required, placeholder='Expiry Date')
+			div.wsite-form-field(style='margin: 5px 0px 5px 0px;')
+				div.wsite-form-input-container.wsite-form-right
+						label.wsite-form-label(for='cvc', class='control-label') CVC  
+						div.wsite-form-input-container
+							input.wsite-form-input.wsite-input(data-stripe='cvc', class='cc-cvc' autocomplete='off' required, placeholder='Security Code')
+		input.wsite-button(type='submit')

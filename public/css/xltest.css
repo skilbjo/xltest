@@ -80,3 +80,9 @@
 .navbar-default .navbar-brand {
   color: #ffffff;
 }
+
+/*Misc*/
+
+#selector:after {
+    display: none;
+}

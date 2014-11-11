@@ -350,7 +350,7 @@ jQuery(function() {
 
         // General styling
 
-    	$('.wsite-form-radio-container').jqTransform();
+    	// $('.wsite-form-radio-container').jqTransform();
 
         $('blockquote').each(function(){
             var contents = $(this).html();

@@ -1,31 +1,51 @@
 div.wsite-form-container(style='margin-top: 10px;')
 	ul.formlist
 		h2.wsite-content-title(style='text-alight:left;') payment form
+			label.wsite-form-sublabel payment info handled by stripe
+			label.wsite-form-sublabel your card will be charged $1 usd
+			label.wsite-form-sublabel xl test will be emailed to you
+		div
+			div.payment-errors
 		div
 			div.wsite-form-field.wsite-name-field(style='margin: 5px 0px 5px 0px;')
 				label.wsite-form-label contact info
+				div(style='clear:both;')
 				div.wsite-form-input-container.wsite-form-left.wsite-form-input-first-name
-					input.wsite-form-input.wsite-input(name='name', placeholder='Mr. / Ms. I-love-Excel')
-					label.wsite-form-sublabel name
+					input.wsite-form-input.wsite-input(name='name', placeholder='Mr. I <3 Excel')
+					label.wsite-form-sublabel NAME
 				div.wsite-form-input-container.wsite-form-right.wsite-form-input-last-name
-					input.wsite-form-input.wsite-input(name='email', placeholder='Send me my Excel Test!@gmail.com')
-					label.wsite-form-sublabel email
-		div
-			div.wsite-form-field.wsite-name-field(style='margin: 5px 0px 5px 0px;')
-					label.wsite-form-label card no 
+					input.wsite-form-input.wsite-input(name='email', placeholder='excelLuvR63@gmail.com')
+					label.wsite-form-sublabel EMAIL 
 						span.form-required *
-					small(class='text-muted')
-						span(class='cc-brand')
-					div.wsite-form-input-container.wsite-form-left.wsite-form-input-first-name
-						input.wsite-form-input.wsite-input(data-stripe='number', class='cc-number', autocomplete='cc-number', required, placeholder='Card number')
-				div.wsite-form-input-container.wsite-form-right.wsite-form-input-last-name
-						label.wsite-form-label exp   
+		div
+			.form-group
+				div.wsite-form-field(style='margin: 5px 0px 5px 0px;')
+						label.wsite-form-label.control-label card no 
 							span.form-required *
-						div.wsite-form-input-container.wsite-form-right.wsite-form-input-last-name
-							input.wsite-form-input.wsite-input(class='cc-exp' required, placeholder='Expiry Date')
-			div.wsite-form-field(style='margin: 5px 0px 5px 0px;')
-				div.wsite-form-input-container.wsite-form-right
-						label.wsite-form-label(for='cvc', class='control-label') CVC  
+						small(class='text-muted')
+							span(class='cc-brand')
 						div.wsite-form-input-container
-							input.wsite-form-input.wsite-input(data-stripe='cvc', class='cc-cvc' autocomplete='off' required, placeholder='Security Code')
-		input.wsite-button(type='submit')
+							input.cc-number.form-control.wsite-form-input.wsite-input(data-stripe='number', autocomplete='cc-number', required, placeholder='CARD NO## GOES HERE')
+		div
+			.form-group
+				div.form-group.wsite-form-field(style='margin:5px 0px 5px 0px;')
+					div.wsite-form-input-container
+							label.wsite-form-label.control-label exp   
+								span.form-required *
+							div.wsite-form-input-container.wsite-form-right
+								input.cc-exp.form-control.wsite-form-input.wsite-input(required, placeholder='Expiry Date')
+			.form-group
+				div.form-group.wsite-form-field(style='margin: 5px 0px 5px 0px;')
+					div.wsite-form-input-container
+							label.wsite-form-label.control-label cvc 
+								span.form-required *
+							div.wsite-form-input-container.wsite-form-right
+								input.cc-cvc.form-control.wsite-form-input.wsite-input(data-stripe='cvc', autocomplete='off' required, placeholder='Security Code')
+							div(style='clear:both;')
+div(style='text-align:center; margin:10px 0px 5px 0px;')
+	span.wsite-button
+		span.wsite-button-inner
+			input.payment-btn(type='submit', value='SUBMIT')
+
+
+

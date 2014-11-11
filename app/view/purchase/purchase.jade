@@ -10,12 +10,14 @@ block content
 						hr.styled-hr(style='width:100%;')
 						div(style='height: 20px; overflow: hidden; width: 100%;')
 					div
-						form(action='/purchase', method='post', id='payment-form' autocomplete='on')
-							include ./elements/form
-								
-		h2.validation
+						form#payment-form(action='/purchase', method='post', autocomplete='on')
+							include ./elements/form			
+					h2.validation
 			
 
+	script(src='https://js.stripe.com/v2/')
+	script(src='/public/js/purchase/purchase.js')
+	script(src='/bower/jquery.payment/lib/jquery.payment.js')
 
 
 include ../template/footer

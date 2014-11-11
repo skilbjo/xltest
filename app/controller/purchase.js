@@ -14,7 +14,7 @@ exports.index = function(req, res, model) {
 
 // GET, /purchase, new
 exports.new = function(req, res) {
-  res.render('purchase/new');
+  res.render('purchase/purchase');
 };
 
 // POST, /puchase, create

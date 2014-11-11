@@ -8,7 +8,7 @@ $(document).ready(function() {
 
 // jQuery function that adds the error class
 	$.fn.toggleInputError = function(err) {
-		this.parent('.form-group').toggleClass('has-error', err);
+		this.parentsUntil('.form-group').toggleClass('has-error', err);
 		return this;
 	};
 
@@ -48,7 +48,7 @@ $(document).ready(function() {
 		 var $form = $('#payment-form');
 		 if (response.error) {
 			 // Show the errors on the form
-			 alert(response.error.message);
+			 alert('Sorry but there is an error: ', response.error.message);
 			 $form.find('.payment-errors').text(response.error.message);
 			 $form.find('button').prop('disabled', false);
 		 } else {

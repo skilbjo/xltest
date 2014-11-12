@@ -157,45 +157,10 @@
 			});
 
 			// set the default state
-			this.checked && aLink.addClass('jqTransformChecked');		
+			this.checked && aLink.addClass('jqTransformChecked');	
 		});
 	};
-	/***************************
-	  Radio Buttons 
-	 ***************************/	
-	$.fn.jqTransRadio = function(){
-		return this.each(function(){
-			if($(this).hasClass('jqTransformHidden')) {return;}
 
-			var $input = $(this);
-			var inputSelf = this;
-				
-			oLabel = jqTransformGetLabel($input);
-			oLabel && oLabel.click(function(){aLink.trigger('click');});
-	
-			var aLink = $('<a href="#" class="jqTransformRadio" rel="'+ this.name +'"></a>');
-			$input.addClass('jqTransformHidden').wrap('<span class="jqTransformRadioWrapper"></span>').parent().prepend(aLink);
-			
-			$input.change(function(){
-				inputSelf.checked && aLink.addClass('jqTransformChecked') || aLink.removeClass('jqTransformChecked');
-				return true;
-			});
-			// Click Handler
-			aLink.click(function(){
-				if($input.attr('disabled')){return false;}
-				$input.trigger('click').trigger('change');
-	
-				// uncheck all others of same name input radio elements
-				$('input[name="'+$input.attr('name')+'"]',inputSelf.form).not($input).each(function(){
-					$(this).attr('type')=='radio' && $(this).trigger('change');
-				});
-	
-				return false;					
-			});
-			// set the default state
-			inputSelf.checked && aLink.addClass('jqTransformChecked');
-		});
-	};
 	
 	/***************************
 	  TextArea 
@@ -318,6 +283,7 @@
 			
 		});
 	};
+	
 	$.fn.jqTransform = function(options){
 		var opt = $.extend({},defaultOptions,options);
 		
@@ -370,49 +336,6 @@ jQuery(function() {
             }
         });
         
-        // Blog styling
-        
-        $("#commentReplyTitle").text("Leave a comment");
-
-        $(".blogCommentLevel1").each(function(){
-            if ($(this).parent().prev("div").children("div").hasClass("blogCommentLevel0")) {
-                $(this).addClass("first");
-            }
-        });
-        
-        $(".blogCommentLevel2").each(function(){
-            if ($(this).parent().prev("div").children("div").hasClass("blogCommentLevel1")) {
-                $(this).addClass("first");
-            }
-        });
-
-        // Format Store markup
-
-        var count = $('.wsite-com-product-option').length;
-        var i = 0;
-        $('.wsite-com-product-option').each(function(){
-            var first = $(this).children('label').text();
-            $(this).children('select').children('option:first-child').text('Select ' + first);
-            $(this).children('label').remove();
-            i++;
-            if (i == count) {                
-            	$('.wsite-com-product-option-dropdown').jqTransform();
-            	$('#wsite-com-product-options').on('DOMCharacterDataModified', '.jqTransformSelectWrapper span', function(){
-            	    $('select').trigger('change');
-            	});
-            }
-        });
-        
-        $('#wsite-com-product-quantity .wsite-com-product-title').text('QTY');
-
-        $('#wsite-com-product-add-to-cart').removeClass("wsite-button-highlight");
-
-        $("#wsite-com-product-images-strip a:first-child").addClass("current-thumb");
-        
-        $("#wsite-com-product-images-strip a").click(function(){
-            $(".current-thumb").removeClass("current-thumb");
-            $(this).addClass("current-thumb");
-        });
         
     });
 

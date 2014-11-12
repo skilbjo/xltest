@@ -1,7 +1,8 @@
 div.wsite-form-container(style='margin-top: 10px;')
 	ul.formlist
 		h2.wsite-content-title(style='text-alight:left;') payment form
-			label.wsite-form-sublabel payment info handled by stripe
+			label.wsite-form-sublabel 
+			label.wsite-form-sublabel payment info handled by stripe's api
 			label.wsite-form-sublabel your card will be charged $1 usd
 			label.wsite-form-sublabel xl test will be emailed to you
 		div
@@ -14,9 +15,11 @@ div.wsite-form-container(style='margin-top: 10px;')
 					input.wsite-form-input.wsite-input(name='name', placeholder='Mr. I <3 Excel')
 					label.wsite-form-sublabel NAME
 				div.wsite-form-input-container.wsite-form-right.wsite-form-input-last-name
-					input.wsite-form-input.wsite-input(name='email', placeholder='excelLuvR63@gmail.com')
+					input.wsite-form-input.wsite-input(name='email', placeholder='excelLuvR63@gmail.com', required)
 					label.wsite-form-sublabel EMAIL 
 						span.form-required *
+					div(style='clear:both;')
+					br
 		div
 			.form-group
 				div.wsite-form-field(style='margin: 5px 0px 5px 0px;')

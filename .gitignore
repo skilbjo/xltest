@@ -7,7 +7,7 @@ node_modules
 newrelic_agent.log
 bower_components/
 
-# Now for the hard stuff. Ignore the stuff in the public directory except for ...
+Ignore the stuff in the public directory except for ...
 # public/
 # public/assets/fonts*
 !public/css/*

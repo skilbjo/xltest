@@ -1,7 +1,7 @@
 var 
   stripe          = require('stripe')(process.env.STRIPE_TEST_SECRET)
   , path          = require('path')
-  , filepath      = path.join(__dirname, process.env.FILEPATH)
+  , filepath      = path.join(__dirname, process.env.FILEPATH_LOCAL)
   , email         = require('emailjs')
   , server        = email.server.connect({ user: process.env.GMAIL_USER , password: process.env.GMAIL_PASS, host: 'smtp.gmail.com', ssl: true});
 
@@ -63,10 +63,10 @@ exports.create = function(req, res, model) {
       from: 'John <skilbjo@gmail.com>'
       , to: req.body.email
       , subject: 'Your xltest inside - thanks for buying!'
-      , text: 'Hi,' + req.body.name + ' \n' +
-              'Thanks for purchasing your XL Test! Attached is your copy! \n' +
-              'Need help? Send a tweet @skilbjo \n' +
-              'Grading? Email me back your completed test'
+      , text: 'Hi,' + req.body.name + ', \n' +
+              'Thanks for purchasing your XL Test! Attached is your copy! \n\n' +
+              'Need help? Send a tweet @skilbjo \n\n' +
+              'Grading? Email me back your completed test!\n'
       , attachment: [
           { path: filepath
             , name: 'xltest.xlsx'

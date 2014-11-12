@@ -11,7 +11,7 @@ The stack:
 | Scope       | Area                      | Technology                                                                |
 |-------------|---------------------------|---------------------------------------------------------------------------|
 | Front End   | `js` Library              | [jQuery](http://jquery.com/)                                              |
-| Front End   | Framework                 | [bootstrap](http://getbootstrap.com/css/)                                 |
+| Front End   | `jquery.payment` Library  | [jQuery.payment](https://github.com/stripe/jquery.payment)                |
 | Server Side | Templating Language       | [jade](http://jade-lang.com/reference/)                                   |
 | Server Side | MVC Framework             | [express.js](http://expressjs.com/api.html)                               |
 | Server Side | Language                  | [node.js](http://nodejs.org/api)                                          |

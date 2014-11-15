@@ -5,8 +5,7 @@ var gulp 						= require('gulp')
 	, node
 	, jsLocations   = ['server.js'
 		, 'app/**/**/*.js'
-		, 'public/js/merchant/*.js'
-		, 'public/js/transaction/*.js']
+		, 'public/js/**/*.js']
   , cssLocations  = ['public/css/*.css']
   , jadeLocations = ['app/view/**/*.jade']
   , viewLocations = ['app/view/**/.html'];

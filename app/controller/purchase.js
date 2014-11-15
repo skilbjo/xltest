@@ -1,5 +1,5 @@
 var 
-  stripe          = require('stripe')(process.env.STRIPE_TEST_SECRET)
+  stripe          = require('stripe')(process.env.STRIPE_LIVE_SECRET)
   , path          = require('path')
   , filepath      = path.join(__dirname, process.env.FILEPATH_LOCAL)
   , email         = require('emailjs')
@@ -62,15 +62,28 @@ exports.create = function(req, res, model) {
     var message = {
       from: 'John <skilbjo@gmail.com>'
       , to: req.body.email
-      , subject: 'Your xltest inside - thanks for buying!'
-      , text: 'Hi,' + req.body.name + ', \n' +
-              'Thanks for purchasing your XL Test! Attached is your copy! \n\n' +
+      , subject: 'Your XL TEST is inside - thanks for buying!'
+      , text: 'Hi ' + req.body.name + ' , \n\n' +
+              'Thanks for purchasing your XL TEST! Attached is your copy! \n\n' +
               'Need help? Send a tweet @skilbjo \n\n' +
               'Grading? Email me back your completed test!\n'
       , attachment: [
+          {
+            data: 
+            '<html>' + 
+              'Hi ' + req.body.name + ' , <br><br>' +
+              'Thanks for purchasing your <b>XL TEST</b>! Attached is your copy! <br><br>' +
+              'Need help? Send a tweet <a href="https://twitter.com/skilbjo">@skilbjo</a> <br><br>' +
+              'Grading? Email me back your completed test! <br><br><br>' +
+              'Thanks again for your interest in <b>XL TEST<b>! <br><br>' +
+              ' - John' +
+            '</html>'
+            , alternative: true
+          },
           { path: filepath
-            , name: 'xltest.xlsx'
-            , type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}
+            , name: 'XLTEST.xlsx'
+            , type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+          }
       ]
     };
 

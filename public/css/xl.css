@@ -259,11 +259,19 @@ input:focus, select:focus, textarea:focus, button:focus { outline: none; }
 }
 
 /*Media Queries*/
+@media (max-width: 979px) {
+  body {
 
+  }
+  h1 {
+    font-size: 31px;
+  }
+}
 
 /*Fonts*/
-@font-face { font-family: 'Sintony'; font-style: normal; font-weight: 400; src: local('Sintony'), url(http://themes.googleusercontent.com/static/fonts/sintony/v2/cu1c4tOdDXpghDFFDdv7MgLUuEpTyoUstqEm5AMlJo4.woff) format('woff'); }
+/*@font-face { font-family: 'Sintony'; font-style: normal; font-weight: 400; src: local('Sintony'), url(http://themes.googleusercontent.com/static/fonts/sintony/v2/cu1c4tOdDXpghDFFDdv7MgLUuEpTyoUstqEm5AMlJo4.woff) format('woff'); }
 @font-face { font-family: 'Sintony'; font-style: normal; font-weight: 700; src: local('Sintony Bold'), local('Sintony-Bold'), url(http://themes.googleusercontent.com/static/fonts/sintony/v2/TiXPkS2VjL9yF_daQZv9Ir3hpw3pgy2gAi-Ip7WPMi0.woff) format('woff'); }
 @font-face { font-family: 'Montserrat'; font-style: normal; font-weight: 400; src: local('Montserrat-Regular'), url(http://themes.googleusercontent.com/static/fonts/montserrat/v4/zhcz-_WihjSQC0oHJ9TCYL3hpw3pgy2gAi-Ip7WPMi0.woff) format('woff'); }
 @font-face { font-family: 'Montserrat'; font-style: normal; font-weight: 700; src: local('Montserrat-Bold'), url(http://themes.googleusercontent.com/static/fonts/montserrat/v4/IQHow_FEYlDC4Gzy_m8fcnbFhgvWbfSbdVg11QabG8w.woff) format('woff'); }
+*/
 

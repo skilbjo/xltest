@@ -27,12 +27,12 @@ app.use('/bower', express.static('bower_components'));
 // ssl
 var forceSsl = function (req, res, next) {
   if (req.headers['x-forwarded-proto'] !== 'https') {
-      return res.redirect(['https://', req.get('Host'), req.url].join(''));
+    return res.redirect(['https://', req.get('Host'), req.url].join(''));
   }
   return next();
 };
 
-if (env === 'production') { app.use(forceSsl); }
+app.use(forceSsl);
 
 // view template engine
 app.set('view engine', 'jade');

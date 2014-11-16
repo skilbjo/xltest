@@ -1,0 +1,25 @@
+/*Footer*/
+
+#footer { width: 80%; 
+	max-width: 600px; 
+	margin: 0 auto; 
+	padding: 5em 0 2em; 	
+	cursor: default; 
+}
+
+#footer-content { 
+	text-align: center !important; 
+	border-top: 3px solid #000000; 
+	padding: 2em 0 0; 	
+	cursor: default; 
+}
+
+#footer-content h2 { font-size: 1.15em; margin: 0 auto 1.5em; }
+
+#footer-content .paragraph { 
+	font-size: .9em !important; 
+}
+
+a, #footer-content {
+cursor: default;
+}

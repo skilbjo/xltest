@@ -24,6 +24,16 @@ app.use(favicon(__dirname + '/public/assets/favicon/favicon.ico'));
 app.use('/public', express.static('public'));
 app.use('/bower', express.static('bower_components'));
 
+// ssl
+var forceSsl = function (req, res, next) {
+  if (req.headers['x-forwarded-proto'] !== 'https') {
+      return res.redirect(['https://', req.get('Host'), req.url].join(''));
+  }
+  return next();
+};
+
+if (env === 'production') { app.use(forceSsl); }
+
 // view template engine
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/app/view');

@@ -17,6 +17,6 @@ module.exports = function(app
    	.get(function(req, res) { controller.purchase.show(req, res, model); });
 
   app.route('/purchase/history')
-  	.get(function(req, res) { controller.purchase.index(req, res); });
+  	.get(function(req, res) { controller.purchase.index(req, res, model); });
 
 };

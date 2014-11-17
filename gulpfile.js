@@ -11,14 +11,20 @@ var gulp 						= require('gulp')
 		, 'app/**/*.js'
 		, 'app/*.js'
 		, 'public/js/**/*.js']
-	, publicJSLocations = ['public/js/purchase/*.js'
+	, jsCommon = ['public/js/analytics/*.js'
 		, 'public/js/template/*.js']
+	, jsPurchase = ['bower_components/jquery.payment/lib/jquery.payment.js'
+		, 'public/js/purchase/*.js']
   , cssLocations  = ['public/css/*.css']
   , jadeLocations = ['app/view/**/*.jade'
   	, 'app/view/**/elements/*.jade'];
 
 gulp.task('default',
- ['lint','css']
+ ['lint','css','js','server']
+);
+
+gulp.task('js',
+ ['commonjs','purchasejs']
 );
 
 gulp.task('lint', function() {
@@ -27,10 +33,18 @@ gulp.task('lint', function() {
 		.pipe(jshint.reporter(stylish));
 });
 
-gulp.task('js', function() {
-	return gulp.src(publicJSLocations)
+gulp.task('commonjs', function() {
+	return gulp.src(jsCommon)
 		.pipe(uglify())
 		.pipe(concat('xl.js'))
+		.pipe(rename({suffix: '.min'}))
+		.pipe(gulp.dest('public/dist'));
+});
+
+gulp.task('purchasejs', function() {
+	return gulp.src(jsPurchase)
+		.pipe(uglify())
+		.pipe(concat('purchase.js'))
 		.pipe(rename({suffix: '.min'}))
 		.pipe(gulp.dest('public/dist'));
 });
@@ -43,12 +57,9 @@ gulp.task('css', function() {
 		.pipe(gulp.dest('public/dist'));
 });
 
-// not working because env variables haven't been loaded
-// mabye change it like so
-// node = spawn('nf start -x 8080 -e env/dev.env')
 gulp.task('server', function() {
   if (node) node.kill();
-  node = spawn('node', ['server.js'], {stdio: 'inherit'});
+  node = spawn('nf', ['start','-x','8080','-e','env/dev.env'], {stdio: 'inherit'});
   node.on('close', function (code) {
     if (code === 8) {
       gulp.log('Error detected, waiting for changes...');

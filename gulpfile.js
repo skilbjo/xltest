@@ -10,12 +10,12 @@ var gulp 						= require('gulp')
 	, jsLocations   = ['server.js'
 		, 'app/**/*.js'
 		, 'app/*.js'
-		, 'public/js/**/*.js']
-	, jsCommon = ['public/js/analytics/*.js'
-		, 'public/js/template/*.js']
+		, 'public/src/js/**/*.js']
+	, jsCommon = ['public/src/js/analytics/*.js'
+		, 'public/src/js/template/*.js']
 	, jsPurchase = ['bower_components/jquery.payment/lib/jquery.payment.js'
-		, 'public/js/purchase/*.js']
-  , cssLocations  = ['public/css/*.css']
+		, 'public/src/js/purchase/*.js']
+  , cssLocations  = ['public/src/css/*.css']
   , jadeLocations = ['app/view/**/*.jade'
   	, 'app/view/**/elements/*.jade'];
 
@@ -59,7 +59,7 @@ gulp.task('css', function() {
 
 gulp.task('server', function() {
   if (node) node.kill();
-  node = spawn('nf', ['start','-x','8080','-e','env/dev.env'], {stdio: 'inherit'});
+  node = spawn('nf', ['start','-x','8080','-e','lib/env/dev.env'], {stdio: 'inherit'});
   node.on('close', function (code) {
     if (code === 8) {
       gulp.log('Error detected, waiting for changes...');

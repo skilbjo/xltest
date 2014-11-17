@@ -43,7 +43,7 @@ $(document).ready(function() {
 	};
 
 // Get Stripe Key
-	Stripe.setPublishableKey('pk_live_lrWm6HYPi36gAYMxZaNTg2pn');
+	Stripe.setPublishableKey('pk_test_Bs8ajQXtiMr40QWaR7BthKK4');
 	 var stripeResponseHandler = function(status, response) {
 		 var $form = $('#payment-form');
 		 if (response.error) {

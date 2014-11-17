@@ -1,7 +1,11 @@
 var 
-  stripe          = require('stripe')(process.env.STRIPE_LIVE_SECRET)
+  stripe          = require('stripe')(process.env.STRIPE_TEST_SECRET)
+  , fs            = require('fs')
+  , request       = require('request')
   , path          = require('path')
-  , filepath      = path.join(__dirname, process.env.FILEPATH_LOCAL)
+  , file          = process.env.FILE_PATH
+  , streamWrite   = request(file).pipe(fs.createWriteStream('xltest.xlsx'))
+  , streamRead    = fs.createReadStream(path.join(__dirname, 'xltest.xlsx'))
   , email         = require('emailjs')
   , server        = email.server.connect({ user: process.env.GMAIL_USER , password: process.env.GMAIL_PASS, host: 'smtp.gmail.com', ssl: true});
 
@@ -21,9 +25,9 @@ exports.new = function(req, res) {
 exports.create = function(req, res, model) {
   stripe.charges.create({
     amount: 100
-    , currency: "usd"
+    , currency: 'usd'
     , card: req.body.stripeToken
-    , description: "xltest"
+    , description: 'xltest.io'
   }, function(err, charge) {
       if(err || !charge) {
         res.json(err); return;
@@ -80,14 +84,20 @@ exports.create = function(req, res, model) {
             '</html>'
             , alternative: true
           },
-          { path: filepath
+          { stream: streamRead
             , name: 'XLTEST.xlsx'
             , type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
           }
       ]
     };
 
-    server.send(message, function(err, response) { console.log(err || message); });
+    streamRead.pause();
+
+    // setTimeout(function() {
+      server.send(message, function(err, response) { 
+        console.log(err || message || response); 
+      });
+    // }, 3000);
   };
 
 };

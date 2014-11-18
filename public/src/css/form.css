@@ -1,11 +1,12 @@
 /*Forms*/
 
-.purchase .wsite-button {
+/*== Button ==*/
+.purchase .button {
 	font-size: 1.6em !important;
 	padding: .9em 1em !important;
 }
 
-.wsite-button { 
+.button { 
 	font-family: 'Montserrat', Helvetica, sans-serif; 
 	text-transform: uppercase; 
 	font-size: 1.25em !important; 
@@ -17,7 +18,7 @@
 	cursor: default;
 }
 
-.wsite-button-inner { 
+.button-inner { 
 	float: none; 
 	background: none !important; 
 	padding: 0 !important; 
@@ -40,14 +41,14 @@ input.payment-btn {
 	cursor: default;
 }
 
-.wsite-button:hover, .wsite-button:active { 
+.button:hover, .button:active { 
 	color: #000000 !important; 
 	background: #ffff00 !important; 
 }
 
-.wsite-form-input { 
-	font-family: 'Sintony', Helvetica, 
-	sans-serif; 
+/*== Input ==*/
+.form-input { 
+	font-family: 'Sintony', Helvetica, sans-serif; 
 	font-weight: bold; 
 	font-size: 1.15em; 
 	color: #000000; 
@@ -56,7 +57,7 @@ input.payment-btn {
 	border-radius: 0 !important; 
 }
 
-.wsite-form-input:focus { 
+.form-input:focus { 
 	background: #ffff00; 
 	color: #000000; 
 	border-top: 0; 
@@ -65,27 +66,18 @@ input.payment-btn {
 	padding: 12px 8px !important; 
 }
 
-.wsite-form-field div.wsite-form-input-container .wsite-form-input {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-ms-box-sizing: border-box;
-	-o-box-sizing: border-box;
-	box-sizing: border-box;
-	width: 100% !important;
-}
-
-.wsite-form-input {
-	font-family: 'Sintony', Helvetica, sans-serif;
-	font-weight: bold;
-	font-size: 1.15em;
-	color: #000000;
-	background: #ffffff;
+.form-input {
 	padding: 8px !important;
 	border-radius: 0 !important;
 	border: 4px solid #000000;
 }
 
-.wsite-form-field div.wsite-form-input-container .wsite-form-input{
+input:focus, select:focus, textarea:focus, button:focus { 
+	outline: none; 
+}
+
+/*== Fields ==*/
+.form-field div.form-input-container .form-input{
 	-webkit-box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	-ms-box-sizing:border-box;
@@ -94,11 +86,29 @@ input.payment-btn {
 	width:100% !important
 }
 
-.wsite-form-field { 
+.form-field { 
 	margin: 0 auto 2.5em !important; 
 	max-width:500px
 }
-.wsite-form-label { 
+
+.form-left { 
+	float: left;
+}
+
+.form-right{
+	float:right;
+}
+
+.name-field .form-input-first-name {
+	width:40%
+}
+
+.name-field .form-input-last-name {
+	width:55%
+}
+
+/*== Labels ==*/
+.form-label { 
 	display: inline-block; 
 	color: #000000; 
 	font-family: 'Montserrat', Helvetica, sans-serif; 
@@ -107,11 +117,14 @@ input.payment-btn {
 	line-height: 1; padding: 0 0 .5em; 
 }
 
-.wsite-form-sublabel{display:block;padding-bottom:5px !important;font-size:11px}
+.form-sublabel {
+	display: block;
+	padding-bottom: 5px !important;
+	font-size:11px
+}
 
-.wsite-form-left{float:left}.wsite-form-right{float:right}
-.wsite-name-field .wsite-form-input-first-name{width:40%}.wsite-name-field .wsite-form-input-last-name{width:55%}
-
-.form-required { color: #000000; font-weight: normal !important; color:red;}
-
-input:focus, select:focus, textarea:focus, button:focus { outline: none; }
+.form-required { 
+	color: #000000; 
+	font-weight: normal !important; 
+	color:red;
+}

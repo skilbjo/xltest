@@ -14,7 +14,7 @@ var gulp 						= require('gulp')
 		, appDir + '**/*.js'
 		, appDir + '*.js'
 		, publicDir + 'js/**/*.js']
-	, jsCommon = ['public/src/js/analytics/*.js'
+	, jsCommon = [ publicDir + 'js/analytics/*.js'
 		, publicDir + 'js/template/*.js']
 	, jsPurchase = ['bower_components/jquery.payment/lib/jquery.payment.js'
 		, publicDir + 'js/purchase/*.js']
@@ -64,7 +64,6 @@ gulp.task('css', function() {
 gulp.task('watch', function() {
 	livereload.listen();
 	gulp.watch(cssLocations, ['css']);
-	// gulp.watch('public/src/css/*.css', ['css']);
 });
 
 gulp.task('server', function() {

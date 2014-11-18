@@ -1,4 +1,8 @@
 /*Body*/
+*|* { 
+	margin:0pt; padding:0pt; 
+	cursor: default;
+}
 
 ul, ol, li, h1, h2, h3, h4, h5, h6, form, body, html, div.paragraph, input, img, p { 
 	margin: 0; 
@@ -9,11 +13,6 @@ ul, ol, li, h1, h2, h3, h4, h5, h6, form, body, html, div.paragraph, input, img,
 
 body { 
 	line-height:1; 	
-}
-
-*|* { 
-	margin:0pt; padding:0pt; 
-	cursor: default;
 }
 
 body, #content { 
@@ -82,8 +81,6 @@ body, #content {
 .landing-page #banner { 
 	margin: 0 auto 4.5em; 
 }
-
-
 
 a { 
 	color: #000000;

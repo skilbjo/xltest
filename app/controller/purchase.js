@@ -4,8 +4,8 @@ var
   , request       = require('request')
   , path          = require('path')
   , file          = process.env.FILE_PATH
-  , streamWrite   = request(file).pipe(fs.createWriteStream('xltest.xlsx'))
-  , streamRead    = fs.createReadStream(path.join(__dirname, 'xltest.xlsx'))
+  , streamWrite   = request(file).pipe(fs.createWriteStream(path.join(__dirname, '../../lib/xltest.xlsx')))
+  , streamRead    = fs.createReadStream(path.join(__dirname, '../../lib/xltest.xlsx'))
   , email         = require('emailjs')
   , server        = email.server.connect({ user: process.env.GMAIL_USER , password: process.env.GMAIL_PASS, host: 'smtp.gmail.com', ssl: true});
 

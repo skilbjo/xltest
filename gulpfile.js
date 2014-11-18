@@ -5,22 +5,25 @@ var gulp 						= require('gulp')
 	, minifyCSS 			= require('gulp-minify-css')
 	, concat 					= require('gulp-concat')
 	, rename 					= require('gulp-rename')
+	, livereload 			= require('gulp-livereload')
 	, spawn    				= require('child_process').spawn
+	, publicDir 			= './public/src/'
+	, appDir 					= './app/'
 	, node
 	, jsLocations   = ['server.js'
-		, 'app/**/*.js'
-		, 'app/*.js'
-		, 'public/src/js/**/*.js']
+		, appDir + '**/*.js'
+		, appDir + '*.js'
+		, publicDir + 'js/**/*.js']
 	, jsCommon = ['public/src/js/analytics/*.js'
-		, 'public/src/js/template/*.js']
+		, publicDir + 'js/template/*.js']
 	, jsPurchase = ['bower_components/jquery.payment/lib/jquery.payment.js'
-		, 'public/src/js/purchase/*.js']
-  , cssLocations  = ['public/src/css/*.css']
-  , jadeLocations = ['app/view/**/*.jade'
-  	, 'app/view/**/elements/*.jade'];
+		, publicDir + 'js/purchase/*.js']
+  , cssLocations  = [ publicDir + 'css/*.css']
+  , jadeLocations = [ appDir + 'view/**/*.jade'
+  	, appDir + 'view/**/elements/*.jade'];
 
 gulp.task('default',
- ['lint','css','js','server']
+ ['lint','css','js','server','watch']
 );
 
 gulp.task('js',
@@ -54,7 +57,14 @@ gulp.task('css', function() {
 		.pipe(minifyCSS({keepBreaks:false}))
 		.pipe(concat('style.css'))
 		.pipe(rename({suffix: '.min'}))
-		.pipe(gulp.dest('public/dist'));
+		.pipe(gulp.dest('public/dist'))
+		.pipe(livereload({auto: false}));
+});
+
+gulp.task('watch', function() {
+	livereload.listen();
+	gulp.watch(cssLocations, ['css']);
+	// gulp.watch('public/src/css/*.css', ['css']);
 });
 
 gulp.task('server', function() {

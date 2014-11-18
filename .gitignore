@@ -9,6 +9,7 @@ bower_components/
 *.csr
 *.pass.key
 *.crt
+*.key
 
 Ignore the stuff in the public directory except for ...
 # public/

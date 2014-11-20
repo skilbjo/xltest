@@ -4,8 +4,9 @@ var
   , request       = require('request')
   , path          = require('path')
   , file          = process.env.FILE_PATH
-  , streamWrite   = request(file).pipe(fs.createWriteStream(path.join(__dirname, '../../lib/xltest.xlsx')))
-  , streamRead    = fs.createReadStream(path.join(__dirname, '../../lib/xltest.xlsx'))
+  , xltest        = path.join(__dirname, '../../lib/xltest.xlsx')
+  , streamWrite   = request(file).pipe(fs.createWriteStream(xltest))
+  , streamRead    = fs.createReadStream(xltest)
   , email         = require('emailjs')
   , server        = email.server.connect({ user: process.env.GMAIL_USER , password: process.env.GMAIL_PASS, host: 'smtp.gmail.com', ssl: true});
 
@@ -67,13 +68,8 @@ exports.create = function(req, res, model) {
       from: 'John <skilbjo@gmail.com>'
       , to: req.body.email
       , subject: 'Your XL TEST is inside - thanks for buying!'
-      , text: 'Hi ' + req.body.name + ' , \n\n' +
-              'Thanks for purchasing your XL TEST! Attached is your copy! \n\n' +
-              'Need help? Send a tweet @skilbjo \n\n' +
-              'Grading? Email me back your completed test!\n'
-      , attachment: [
-          {
-            data: 
+      , text: 'Hi ' + req.body.name + ' , \n\n' + 'Thanks for purchasing your XL TEST! Attached is your copy! \n\n' + 'Need help? Send a tweet @skilbjo \n\n' + 'Grading? Email me back your completed test!\n'
+      , attachment: [ { data: 
             '<html>' + 
               'Hi ' + req.body.name + ' , <br><br>' +
               'Thanks for purchasing your <b>XL TEST</b>! Attached is your copy! <br><br>' +
@@ -81,25 +77,17 @@ exports.create = function(req, res, model) {
               'Grading? Email me back your completed test! <br><br><br>' +
               'Thanks again for your interest in <b>XL TEST<b>! <br><br>' +
               ' - John' +
-            '</html>'
-            , alternative: true
-          },
-          { stream: streamRead
+            '</html>' , alternative: true
+          }, { path: xltest
             , name: 'XLTEST.xlsx'
             , type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
           }
       ]
     };
-
-    streamRead.pause();
-
-    // setTimeout(function() {
-      server.send(message, function(err, response) { 
-        console.log(err || message || response); 
-      });
-    // }, 3000);
+    server.send(message, function(err, response) { 
+      console.log(err || message || response); 
+    });
   };
-
 };
 
 // GET, /purchase/:id, show
@@ -110,6 +98,20 @@ exports.show = function(req, res, model) {
     if(err || !purchase) {
       res.json(err); return;
     } else {
+      res.json(purchase);
+    }
+  });
+}; 
+
+// GET, /purchase/thanks, thanks
+exports.thanks = function(req, res, model) {
+  model.purchase
+  .find({ where: { PurchaseId: req.params.id } })
+  .complete(function(err, purchase) {
+    if(err || !purchase) {
+      res.json(err); return;
+    } else {
+      // res.render('thanks');
       res.json(purchase);
     }
   });

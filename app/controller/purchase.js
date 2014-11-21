@@ -4,9 +4,13 @@ var
   , request       = require('request')
   , path          = require('path')
   , file          = process.env.FILE_PATH
-  , xltest        = path.join(__dirname, '../../lib/xltest.xlsx')
+  , xltest        = path.join(__dirname, './xltest.xlsx')
+  // , streamRead2   = request(file)
+  // , streamRead    = request.get(file)
+  // , streamRead    = request.get(file).pipe(fs.createReadStream())
+  // , xltest        = path.join(__dirname, '../../lib/xltest.xlsx')
   , streamWrite   = request(file).pipe(fs.createWriteStream(xltest))
-  , streamRead    = fs.createReadStream(xltest)
+  // , streamRead    = fs.createReadStream(xltest)
   , email         = require('emailjs')
   , server        = email.server.connect({ user: process.env.GMAIL_USER , password: process.env.GMAIL_PASS, host: 'smtp.gmail.com', ssl: true});
 
@@ -53,39 +57,42 @@ exports.create = function(req, res, model) {
         if(err || !purchase) {
           res.json(err); return;
         } else {
-          res.json({ status: 
-                      {message: 'Thanks for your purchase!, check ' + req.body.email + ' for your xltest!'}
-                   , details: 
-                      { transaction: purchase }
-                  });
           sendEmail();
+          // res.json({ status: 
+          //             {message: 'Thanks for your purchase!, check ' + req.body.email + ' for your xltest!'}
+          //          , details: 
+          //             { transaction: purchase }
+          //         });
+          // res.redirect(/purchase/thanks/purchase.id) // redirect to thanks
         }
       });
   };
 
   var sendEmail = function () {
+    var streamRead    = fs.createReadStream(xltest);
     var message = {
       from: 'John <skilbjo@gmail.com>'
       , to: req.body.email
       , subject: 'Your XL TEST is inside - thanks for buying!'
       , text: 'Hi ' + req.body.name + ' , \n\n' + 'Thanks for purchasing your XL TEST! Attached is your copy! \n\n' + 'Need help? Send a tweet @skilbjo \n\n' + 'Grading? Email me back your completed test!\n'
-      , attachment: [ { data: 
-            '<html>' + 
+      , attachment: [ { data:  '<html>' + 
               'Hi ' + req.body.name + ' , <br><br>' +
               'Thanks for purchasing your <b>XL TEST</b>! Attached is your copy! <br><br>' +
               'Need help? Send a tweet <a href="https://twitter.com/skilbjo">@skilbjo</a> <br><br>' +
               'Grading? Email me back your completed test! <br><br><br>' +
               'Thanks again for your interest in <b>XL TEST<b>! <br><br>' +
-              ' - John' +
+              ' - John <br><br>' +
             '</html>' , alternative: true
-          }, { path: xltest
+          }, { stream: streamRead
             , name: 'XLTEST.xlsx'
             , type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
           }
       ]
     };
+    streamRead.pause();
     server.send(message, function(err, response) { 
-      console.log(err || message || response); 
+      // console.log(err || message || response); 
+      res.send(err || message);
     });
   };
 };

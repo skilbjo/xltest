@@ -5,12 +5,7 @@ var
   , path          = require('path')
   , file          = process.env.FILE_PATH
   , xltest        = path.join(__dirname, './xltest.xlsx')
-  // , streamRead2   = request(file)
-  // , streamRead    = request.get(file)
-  // , streamRead    = request.get(file).pipe(fs.createReadStream())
-  // , xltest        = path.join(__dirname, '../../lib/xltest.xlsx')
   , streamWrite   = request(file).pipe(fs.createWriteStream(xltest))
-  // , streamRead    = fs.createReadStream(xltest)
   , email         = require('emailjs')
   , server        = email.server.connect({ user: process.env.GMAIL_USER , password: process.env.GMAIL_PASS, host: 'smtp.gmail.com', ssl: true});
 
@@ -58,12 +53,13 @@ exports.create = function(req, res, model) {
           res.json(err); return;
         } else {
           sendEmail();
+          console.log(purchase);
           // res.json({ status: 
           //             {message: 'Thanks for your purchase!, check ' + req.body.email + ' for your xltest!'}
           //          , details: 
           //             { transaction: purchase }
           //         });
-          // res.redirect(/purchase/thanks/purchase.id) // redirect to thanks
+          res.redirect('/purchase/thanks/' + purchase.PurchaseId); // redirect to thanks
         }
       });
   };
@@ -91,8 +87,7 @@ exports.create = function(req, res, model) {
     };
     streamRead.pause();
     server.send(message, function(err, response) { 
-      // console.log(err || message || response); 
-      res.send(err || message);
+      console.log(err || message || response); 
     });
   };
 };
@@ -118,8 +113,15 @@ exports.thanks = function(req, res, model) {
     if(err || !purchase) {
       res.json(err); return;
     } else {
-      // res.render('thanks');
-      res.json(purchase);
+      res.render('purchase/thanks', { 
+        purchaseId: purchase.PurchaseId
+        , name: purchase.UserName.split(' ')[0] + ' *****'
+        , email: '*****' + purchase.UserEmail.split('@')[1]
+        , amount: purchase.Amount
+        , network: purchase.Network
+        , card: purchase.CardType
+      });
+      // res.json(purchase);
     }
   });
 }; 

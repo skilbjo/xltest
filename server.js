@@ -72,7 +72,6 @@ require('./app/routes.js')(app
   );
 
 // launch ===================
-  // production
 db.sequelize.sync({ force: false }).complete(function(err) {
   if (err) { throw err[0] ; } else {
     if (env == 'production') {

@@ -1,14 +1,10 @@
 extends ../template/layout
 
 block content
-	section.form
-		div#content
-			div
-				div(style='height: 20px; overflow: hidden; width: 100%;')
-				div(style='height: 20px; overflow: hidden; width: 100%;')
-			div
-				| Thanks so much for Purchasing!
-				| Here are the details of your transaction:
+	section.header
+		include ./../static_pages/elements/header
+	section.thanks
+		include ./elements/thanks
 
 
 include ../template/footer

@@ -19,7 +19,7 @@ module.exports = function(app
   app.route('/purchase/history')
   	.get(function(req, res) { controller.purchase.index(req, res, model); });
 
-  app.route('purchase/thanks/:id([0-9]+)')
+  app.route('/purchase/thanks/:id([0-9]+)')
     .get(function(req, res) { controller.purchase.thanks(req, res, model); });
 
 };

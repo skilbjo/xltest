@@ -9,13 +9,6 @@ var
   , email         = require('emailjs')
   , server        = email.server.connect({ user: process.env.GMAIL_USER , password: process.env.GMAIL_PASS, host: 'smtp.gmail.com', ssl: true});
 
-// GET, /purchase/history, index
-exports.index = function(req, res, model) {
-  model.purchase.findAll().success(function(purchases) {
-    res.json(purchases);
-  });
-};
-
 // GET, /purchase, new
 exports.new = function(req, res) {
   res.render('purchase/purchase');
@@ -54,11 +47,6 @@ exports.create = function(req, res, model) {
         } else {
           sendEmail();
           console.log(purchase);
-          // res.json({ status: 
-          //             {message: 'Thanks for your purchase!, check ' + req.body.email + ' for your xltest!'}
-          //          , details: 
-          //             { transaction: purchase }
-          //         });
           res.redirect('/purchase/thanks/' + purchase.PurchaseId); // redirect to thanks
         }
       });
@@ -92,19 +80,6 @@ exports.create = function(req, res, model) {
   };
 };
 
-// GET, /purchase/:id, show
-exports.show = function(req, res, model) {
-  model.purchase
-  .find({ where: { PurchaseId: req.params.id } })
-  .complete(function(err, purchase) {
-    if(err || !purchase) {
-      res.json(err); return;
-    } else {
-      res.json(purchase);
-    }
-  });
-}; 
-
 // GET, /purchase/thanks, thanks
 exports.thanks = function(req, res, model) {
   model.purchase
@@ -115,13 +90,12 @@ exports.thanks = function(req, res, model) {
     } else {
       res.render('purchase/thanks', { 
         purchaseId: purchase.PurchaseId
-        , name: purchase.UserName.split(' ')[0] + ' *****'
-        , email: '*****' + purchase.UserEmail.split('@')[1]
+        , name: purchase.UserName.charAt(0) + '*****'
+        , email: purchase.UserEmail.charAt(0) + '*****@' + purchase.UserEmail.split('@')[1]
         , amount: purchase.Amount
         , network: purchase.Network
         , card: purchase.CardType
       });
-      // res.json(purchase);
     }
   });
 }; 

@@ -1,12 +1,17 @@
 div#content
-	div
+	div(style='text-align:center;')
 		h2 Thanks! You just purchased your xltest
-		h3 You'll receive an email with the .xlsx file
-		h3 Hope you have a great time, fellow excel nerd
+		h3 Check your email for the good stuff
+		h3 Have a great time, fellow excel nerd
+		br
 		h3 Here are the details of your purchase
-
-		p #{purchaseId}
-		p #{name}
-		p #{email}
-		p #{network}
-		p #{card}
+		br
+		div(style='margin-left:auto; margin-right: auto; width: 70%')
+			:markdown
+				|    Item    	|  Description  	|
+				|:----------:	|:-------------:	|
+				| PurchaseId 	| #{purchaseId} 	|
+				|    Name    	|    #{name}    	|
+				|    Email   	|    #{email}   	|
+				|   Amount   	|   #{network}  	|
+				|   Network  	|    #{card}    	|

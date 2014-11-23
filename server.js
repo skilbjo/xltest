@@ -39,8 +39,8 @@ if (env == 'development') {
     https   = require('https')
   , fs      = require('fs')
   , options = { 
-      key:  fs.readFileSync('./lib/SSL/localhost/server.key')
-    , cert: fs.readFileSync('./lib/SSL/localhost/server.crt')
+      key:  fs.readFileSync('./lib/SSL/dev/server.key')
+    , cert: fs.readFileSync('./lib/SSL/dev/server.crt')
     , requestCert: false
     , rejectUnauthorized: false
     };

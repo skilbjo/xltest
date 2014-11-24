@@ -28,7 +28,7 @@ div.form-container(style='margin-top: 10px;')
 						small(class='text-muted')
 							span(class='cc-brand')
 						div.form-input-container
-							input.cc-number.form-control.form-input.input(data-stripe='number', autocomplete='cc-number', required, placeholder='CARD NO## GOES HERE')
+							input.cc-number.form-control.form-input.input(data-stripe='number', id='cardNumber', autocomplete='cc-number', required, placeholder='CARD NO## GOES HERE')
 		div
 			.form-group
 				div.form-group.form-field(style='margin:5px 0px 5px 0px;')
@@ -36,14 +36,14 @@ div.form-container(style='margin-top: 10px;')
 							label.form-label.control-label exp   
 								span.form-required *
 							div.form-input-container.form-right
-								input.cc-exp.form-control.form-input.input(required, placeholder='Expiry Date')
+								input.cc-exp.form-control.form-input.input(required, id='cardExpiration', autocomplete='cc-exp', placeholder='Expiry Date')
 			.form-group
 				div.form-group.form-field(style='margin: 5px 0px 5px 0px;')
 					div.form-input-container
 							label.form-label.control-label cvc 
 								span.form-required *
 							div.form-input-container.form-right
-								input.cc-cvc.form-control.form-input.input(data-stripe='cvc', autocomplete='off' required, placeholder='Security Code')
+								input.cc-cvc.form-control.form-input.input(data-stripe='cvc', autocomplete='off', required, placeholder='Security Code')
 							div(style='clear:both;')
 div(style='text-align:center; margin:10px 0px 5px 0px;')
 	span.button

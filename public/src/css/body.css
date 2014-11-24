@@ -1,4 +1,6 @@
 /*Body*/
+
+/*All*/
 *|* { 
 	margin:0pt; padding:0pt; 
 	cursor: default;
@@ -15,7 +17,7 @@ body {
 	line-height:1; 	
 }
 
-body, #content { 
+body { 
 	font-size: 14px; 
 	font-family: 'Sintony', Helvetica, sans-serif; 
 	line-height: 2; background: #ffffff; color: #000000; 
@@ -25,16 +27,47 @@ body, #content {
 	-o-font-smoothing: antialiased !important; 
 }
 
-#sitename, #banner, #footer { 
+.landing-page #sitename { 
+	padding: 1.25em 0 .7em; 
+}
+
+.landing-page #banner, #features { 
+	margin: 0 auto 4.5em; 
+}
+
+/*Sections*/
+/*All*/
+#sitename, #banner, #features, #footer { 
 	text-align: center; 
 }
 
+/*Sitename*/
 #sitename, h1, h2, h3, h4, h5 { 
 	font-family: 'Montserrat', Helvetica, sans-serif; 
 	line-height: 1 !important; 
 	text-transform: uppercase; 
 }
 
+#sitename { 
+	font-size: 6.5em; 
+	letter-spacing: .1em; 
+	margin: 0 auto !important; 
+}
+
+/*Banner*/
+#banner { 
+	letter-spacing: .08em; 
+}
+
+#banner h2 > span { 
+	display: inline-block; 
+	font-size: 2.5em; 
+	background: #ffff00; 
+	color: #000000; 
+	padding: .25em .5em; 	
+}
+
+/*Content*/
 #content { 
 	width: 80%; 
 	max-width: 600px; 
@@ -56,32 +89,26 @@ body, #content {
 	border-bottom: 3px solid #000000; 
 }
 
-#sitename { 
-	font-size: 6.5em; 
-	letter-spacing: .1em; 
-	margin: 0 auto !important; 
-}
-
-#banner { 
+/*Features*/
+#features { 
 	letter-spacing: .08em; 
+	text-transform: uppercase;
 }
 
-#banner h2 > span { 
+#features h2 { 
 	display: inline-block; 
-	font-size: 2.5em; 
-	background: #ffff00; 
-	color: #000000; 
+	font-size: 1.5em; 
+	margin: 0 auto 1.5em;
 	padding: .25em .5em; 	
 }
 
-.landing-page #sitename { 
-	padding: 1.25em 0 .7em; 
+#features p {
+	font-size: 11px;
+	/*padding-bottom: 5px !important;*/
+	/*padding: .8em .1em;*/
 }
 
-.landing-page #banner { 
-	margin: 0 auto 4.5em; 
-}
-
+/*Links*/
 a { 
 	color: #000000;
 	text-decoration: none; 

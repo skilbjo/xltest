@@ -56,7 +56,7 @@ Add the Excel test in `/public/assets/xltest.xlsx`
 
 Run the server locally with `node-foreman` (loads config vars from `.env`)
 
-	nf start -x 8080 -e env/dev.env
+	nf start -x 8080 -e lib/env/dev.env
 
 Or, deploy
 

@@ -12,6 +12,7 @@ var
   , bodyParser      = require('body-parser')
   , marked          = require('marked').setOptions({ breaks: true })
   , db              = require('./app/model/index.js')
+  , newrelic        = require('newrelic')
   , env             = (process.env.NODE_ENV || 'development');
 
 // configuration ==============

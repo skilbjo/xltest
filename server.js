@@ -24,6 +24,7 @@ app.use(favicon(__dirname + '/public/src/assets/favicon/favicon.ico'));
 app.use('/public', express.static('public'));
 app.use('/bower', express.static('bower_components'));
 
+/* SSL =====
   // ssl
 var forceSSL = function (req, res, next) {
   if (req.headers['x-forwarded-proto'] !== 'https') {
@@ -45,6 +46,21 @@ if (env == 'development') {
     , rejectUnauthorized: false
     };
 }
+
+db.sequelize.sync({ force: false }).complete(function(err) {
+  if (err) { throw err[0] ; } else {
+    if (env == 'production') {
+      http.createServer(app).listen(app.get('port'), function(){ 
+        console.log('The magic happens on port ' + app.get('port'));
+      });
+    } else if (env == 'development') {
+      https.createServer(options, app).listen(app.get('port'), function(){ 
+        console.log('The magic happens on port ' + app.get('port'));
+      });
+    }
+  }
+});
+*/
 
 // view template engine
 app.set('view engine', 'jade');
@@ -71,18 +87,13 @@ require('./app/routes.js')(app
   , controller
   );
 
+/* No SSL ; HTTP only */
 // launch ===================
-db.sequelize.sync({ force: false }).complete(function(err) {
+db.sequelize.sync({ force: true }).complete(function(err) {
   if (err) { throw err[0] ; } else {
-    if (env == 'production') {
-      http.createServer(app).listen(app.get('port'), function(){ 
-        console.log('The magic happens on port ' + app.get('port'));
-      });
-    } else if (env == 'development') {
-      https.createServer(options, app).listen(app.get('port'), function(){ 
-        console.log('The magic happens on port ' + app.get('port'));
-      });
-    }
+    http.createServer(app).listen(app.get('port'), function() {
+      console.log('the magic happens on port ' + app.get('port'));
+    });
   }
 });
 
